@@ -1,0 +1,195 @@
+@import "tailwindcss";
+
+:root {
+  /* Warm beige/parchment backgrounds */
+  --bg: #FAF6F1;
+  --bg-warm: #F3EDE4;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FBF8F4;
+  --bg-terminal: #2C2520;
+
+  /* Rich brown text */
+  --text-primary: #3B2F2F;
+  --text-secondary: #6B5B4F;
+  --text-tertiary: #A89888;
+  --text-muted: #D4C8BB;
+
+  /* Warm brown accent */
+  --accent: #8B5E3C;
+  --accent-light: #A0714D;
+  --accent-warm: #7A4F30;
+  --accent-bg: #F5E6D3;
+  --accent-bg-subtle: #FAF2EA;
+
+  /* Borders */
+  --border: #E8DDD0;
+  --border-light: #F0E8DD;
+  --border-dark: #D4C4B0;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-warm: var(--bg-warm);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-hover: var(--bg-card-hover);
+  --color-bg-terminal: var(--bg-terminal);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-accent-warm: var(--accent-warm);
+  --color-accent-bg: var(--accent-bg);
+  --color-accent-bg-subtle: var(--accent-bg-subtle);
+  --color-border: var(--border);
+  --color-border-light: var(--border-light);
+  --color-border-dark: var(--border-dark);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-inter); /* one family everywhere: Geist */
+  --font-display: var(--font-inter);
+  --font-mono: var(--font-mono);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* ─── Typography classes ─── */
+/* Display work is done by weight and tracking, not a second family (brand
+   guide: Geist ~620 at -0.045em for headings). The italic utility rides on
+   dozens of headings from the serif era — !important neutralizes it in one
+   place instead of a 40-file class sweep, and Geist has no display italic
+   worth keeping anyway. */
+.font-display {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  letter-spacing: -0.045em;
+  font-weight: 620;
+  font-style: normal !important;
+}
+.font-display em {
+  font-style: normal; /* accent <em>s keep their color, drop the slant */
+}
+
+.font-body-serif {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-style: normal;
+}
+
+.font-code {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Section label — monospace uppercase */
+.section-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Warm gradient text — brown/amber */
+.gradient-text {
+  background: linear-gradient(135deg, #3B2F2F 0%, #8B5E3C 50%, #A0714D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Terminal chrome — dark warm brown */
+.terminal-chrome {
+  background: var(--bg-terminal);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px -12px rgba(59, 47, 47, 0.15);
+}
+
+/* Card hover */
+.card-hover {
+  transition: all 0.2s ease;
+}
+.card-hover:hover {
+  box-shadow: 0 2px 16px rgba(59, 47, 47, 0.06);
+  border-color: var(--border-dark);
+}
+
+/* Subtle dot grid bg */
+.dot-grid {
+  background-image: radial-gradient(circle, #D4C4B0 0.5px, transparent 0.5px);
+  background-size: 32px 32px;
+}
+
+/* Cabinet brand wordmark — same lockup as cabinet-website's navbar:
+   Instrument Serif at 400 (the face has no bold) in the warm brown gradient. */
+.font-brand {
+  font-family: var(--font-brand), Georgia, serif;
+  font-weight: 400;
+  background: linear-gradient(135deg, #3B2F2F 0%, #8B5E3C 50%, #A0714D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Wooden plank card for the integrations grid — pure CSS grain so it stays
+   crisp at any card size, toned to match the generated wood-tile art. */
+.wood-card {
+  background-color: #E7CFA3;
+  background-image:
+    radial-gradient(120% 80% at 28% 0%, rgba(255, 247, 226, 0.55), rgba(255, 247, 226, 0) 62%),
+    linear-gradient(97deg,
+      rgba(163, 120, 70, 0.14) 0%, rgba(255, 238, 204, 0.15) 26%,
+      rgba(148, 106, 60, 0.16) 52%, rgba(255, 241, 210, 0.12) 76%,
+      rgba(156, 112, 64, 0.14) 100%),
+    repeating-linear-gradient(97deg,
+      rgba(118, 80, 42, 0.09) 0px, rgba(118, 80, 42, 0.09) 1px,
+      transparent 1px, transparent 6px,
+      rgba(139, 94, 60, 0.06) 6px, rgba(139, 94, 60, 0.06) 8px,
+      transparent 8px, transparent 15px);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 249, 232, 0.65),
+    inset 2px 0 5px rgba(255, 244, 218, 0.3),
+    inset -2px 0 6px rgba(96, 64, 32, 0.14),
+    inset 0 -4px 8px rgba(96, 64, 32, 0.24),
+    0 1px 2px rgba(60, 45, 30, 0.12),
+    0 14px 30px -12px rgba(60, 45, 30, 0.4);
+}
+/* Glyph carved straight into the plank: drop-shadows follow the shape's
+   alpha, so a lit edge below + soft shade above reads as engraving. Works on
+   both svg logos and emoji. */
+.engraved {
+  filter: brightness(0.94) saturate(0.85)
+    drop-shadow(0 1.5px 0 rgba(255, 248, 230, 0.75))
+    drop-shadow(0 -1.5px 1.5px rgba(80, 52, 24, 0.45));
+}
+
+.wood-card:hover {
+  box-shadow:
+    inset 0 2px 0 rgba(255, 249, 232, 0.65),
+    inset 2px 0 5px rgba(255, 244, 218, 0.3),
+    inset -2px 0 6px rgba(96, 64, 32, 0.14),
+    inset 0 -4px 8px rgba(96, 64, 32, 0.24),
+    0 2px 4px rgba(60, 45, 30, 0.14),
+    0 26px 48px -16px rgba(60, 45, 30, 0.5);
+}
+
+/* Prose styling for rendered markdown */
+.prose h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; margin-top: 1.5rem; }
+.prose h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 1.25rem; color: var(--text-primary); }
+.prose h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 1rem; }
+.prose p { margin-bottom: 0.75rem; line-height: 1.7; color: var(--text-secondary); }
+.prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.75rem; }
+.prose ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.75rem; }
+.prose li { margin-bottom: 0.25rem; line-height: 1.6; color: var(--text-secondary); }
+.prose code { font-family: var(--font-mono), monospace; font-size: 0.875em; background: var(--bg-warm); padding: 0.125rem 0.375rem; border-radius: 4px; }
+.prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.prose a:hover { color: var(--accent-warm); }
+.prose strong { font-weight: 600; color: var(--text-primary); }
